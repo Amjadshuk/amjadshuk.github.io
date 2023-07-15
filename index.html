@@ -338,6 +338,11 @@ margin-left: 60px;
   margin-top: 50px;
   margin-left: 50px ;
 }
+.mobile{
+  height: 80%;
+  width: 45%;
+  margin-left: calc(50% - 22.5%);
+}
   </style>
   <!--styles-->
 </head>
@@ -545,6 +550,21 @@ var topics = ['Business Intelligence','Mobile Dvelopment','Data Managment and Wa
             imgsacont.appendChild(sa0img)
             imgsacont.appendChild(sa1img)
           }
+          var media4= null
+          if (appnder==1) {
+            media4 = document.createElement('video')
+            media4.src ='./Screen_Recording_20230611-132959_Speedometer.mp4'
+            media4.setAttribute('class','mobile')
+            
+            media4.currentTime =40;
+            media4.onclick = ()=>{
+              media4.play()
+            }
+
+            media4.muted = true
+            
+          }
+          
         //...TOPICS
 
         some.appendChild(subtitle)
@@ -554,9 +574,14 @@ var topics = ['Business Intelligence','Mobile Dvelopment','Data Managment and Wa
         if (imgsacont!=null) {
          some.appendChild(imgsacont) 
         }
+        if (media4!=null) {
+         some.appendChild(media4) 
+         media4.click()
+        }
+
         document.getElementById('maincont').appendChild(some)
 
-        
+      
         appnder++
     }, 3000);
 
