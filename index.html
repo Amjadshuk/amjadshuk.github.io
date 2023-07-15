@@ -293,6 +293,15 @@ margin-left: 60px;
   border-radius: 1vh;
   position: absolute;
 }
+.media{
+  width: 100%;
+  height: 56%;
+  background-size:contain ;
+  background-repeat: no-repeat;
+  margin-top: 22.5%;
+  border-radius: 1vh;
+  position: absolute;
+}
   </style>
   <!--styles-->
 </head>
@@ -403,10 +412,68 @@ var topics = ['Business Intelligence','Mobile Dvelopment','Data Managment and Wa
             gift.src ='./1686401734209.gif'
             gift.setAttribute('class','gift')
             some.appendChild(gift)
-              
           }
-        
-          
+          var media= document.createElement('video')
+          if (appnder==4) {
+            
+            media.src ='./Whatwebelievein.mp4'
+            media.setAttribute('class','media')
+            
+            media.currentTime =0;
+            media.onclick = ()=>{
+              media.play()
+            }
+
+            media.muted = true
+            some.appendChild(media)
+          }
+          media.click()
+           var media1= document.createElement('video')
+          if (appnder==7) {
+            
+            media1.src ='./Whatwebelievein.mp4'
+            media1.setAttribute('class','media')
+            
+            media1.currentTime =82;
+            media1.onclick = ()=>{
+              media1.play()
+            }
+
+            media1.muted = true
+            some.appendChild(media1)
+          }
+          media1.click()
+          var media2= document.createElement('video')
+          if (appnder==5) {
+            
+            media2.src ='./Whatwebelievein.mp4'
+            media2.setAttribute('class','media')
+            
+            media2.currentTime =20;
+            media2.onclick = ()=>{
+              media2.play()
+            }
+
+            media2.muted = true
+            some.appendChild(media2)
+          }
+          media2.click()
+          var media3= document.createElement('video')
+          if (appnder==6) {
+            
+            media3.src ='./Whatwebelievein.mp4'
+            media3.setAttribute('class','media')
+            
+            media3.currentTime =40;
+            media3.onclick = ()=>{
+              media3.play()
+            }
+
+            media3.muted = true
+            some.appendChild(media3)
+          }
+          media3.click()
+      
         //...TOPICS
 
         some.appendChild(subtitle)
