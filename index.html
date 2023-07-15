@@ -286,7 +286,7 @@ margin-left: 60px;
 
 .gift{
   width: 100%;
-  height: 56%;
+  height: 53%;
   background-size:contain ;
   background-repeat: no-repeat;
   margin-top: 22.5%;
@@ -301,6 +301,42 @@ margin-left: 60px;
   margin-top: 22.5%;
   border-radius: 1vh;
   position: absolute;
+}
+.imgdm{
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin: 1vw;
+
+}
+.imgdm2{
+  margin: 1vw;
+  width: 120px;
+  height: 50px;
+  position: relative;
+  
+}
+.imgdmcont{
+  margin-top: 25px;
+  margin-left: 25px ;
+}
+.saimg:first-child{
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin: 1vw;
+}
+
+.saimg:last-child{
+  width: 80px;
+  height: 50px;
+  position: relative;
+  margin: 1vw;
+
+}
+.imgsacont{
+  margin-top: 50px;
+  margin-left: 50px ;
 }
   </style>
   <!--styles-->
@@ -473,10 +509,51 @@ var topics = ['Business Intelligence','Mobile Dvelopment','Data Managment and Wa
             some.appendChild(media3)
           }
           media3.click()
-      
+          var imgdmcont = null
+          if (appnder==2) {
+            imgdmcont = document.createElement('div')
+            imgdmcont.setAttribute('class','imgdmcont')
+            
+            var img1dm = document.createElement('img')
+            img1dm.setAttribute('class','imgdm')
+            img1dm.src ='./DM/airbyte-logo-CC005A0105-seeklogo.com.png'
+            var img2dm = document.createElement('img')
+            img2dm.setAttribute('class','imgdm2')
+            img2dm.src ='./DM/Apache_Software_Foundation_Logo_(2016).svg.png'
+            var img3dm = document.createElement('img')
+            img3dm.setAttribute('class','imgdm')
+            img3dm.src ='./DM/dagster-primary-mark.png'
+            var img4dm = document.createElement('img')
+            img4dm.setAttribute('class','imgdm2')
+            img4dm.src ='./DM/Databricks_Logo.png'
+            imgdmcont.appendChild(img1dm)
+            imgdmcont.appendChild(img2dm)
+            imgdmcont.appendChild(img3dm)
+            imgdmcont.appendChild(img4dm)
+          }
+          var imgsacont = null
+          if (appnder==3) {
+            imgsacont = document.createElement('div')
+            imgsacont.setAttribute('class','imgsacont')
+          
+            var sa0img = document.createElement('img')
+            sa0img.setAttribute('class','saimg')
+            sa0img.src ='./SA/Kubernetes_logo_without_workmark.svg.png'
+            var sa1img = document.createElement('img')
+            sa1img.setAttribute('class','saimg')
+            sa1img.src ='./SA/Docker-Symbol.png'
+            imgsacont.appendChild(sa0img)
+            imgsacont.appendChild(sa1img)
+          }
         //...TOPICS
 
         some.appendChild(subtitle)
+        if (imgdmcont!=null) {
+         some.appendChild(imgdmcont) 
+        }
+        if (imgsacont!=null) {
+         some.appendChild(imgsacont) 
+        }
         document.getElementById('maincont').appendChild(some)
 
         
@@ -572,8 +649,7 @@ if (fill==0) {
   for (ele in group) {
     if (group.length>1) {
       group[ele].remove()
-    }
-    
+    }    
   }
 
 
