@@ -18,6 +18,8 @@
       transition: all 1s ease-out;
       background: rgb(0, 0, 0);
       overflow: none;
+      z-index: -2;
+      position: fixed;
       
     }
     .layer{
@@ -52,8 +54,8 @@
     }
   
     .circles{
-    width: 2500px;
-    height: 2500px;
+    width: 100%;
+    height: 100%;
     border-radius: 500px;
     position: absolute;
     
@@ -64,9 +66,9 @@
     width: 30%;
     height: 30%;
     background: black;
-    z-index: 1;
+    z-index: 4;
     box-shadow: 0 0 2px black;
-    opacity: 75%;
+    opacity: 95%;
     border-radius: 2vh;
     animation: movingcont 10s linear forwards;
     transition: all 2s ease-out;
@@ -261,6 +263,19 @@ margin-left: 60px;
   height: 50px;
   
 }
+.bgfinal{
+  width: 100vw;
+  height: 100vh;
+}
+.maincont{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 4;
+}
+
+
+
   </style>
   <!--styles-->
 </head>
@@ -284,9 +299,19 @@ margin-left: 60px;
     </div>
 
 
+
+<div class="bgfinal">
+
+  <div class="maincont" id="maincont"></div>
+  <div class="circles" id="circles"></div>
   <div class="layer" id="layer1"></div>
   <div class="layer" id="layer2"></div>
   <div class="layer" id="layer3"></div>
+
+
+</div>
+
+
 
   <script>
 function generateRandomNumber() {
@@ -309,9 +334,7 @@ function generateRandomP() {
   return `#${paddedHexColor}`;
 }
 
-var circles = document.createElement('div')
-circles.setAttribute('class','circles')
-document.body.appendChild(circles)
+
 
 
  var addedmain = setInterval(() => {
@@ -342,9 +365,16 @@ document.body.appendChild(circles)
 
         var some = document.createElement('div')
         some.setAttribute('class','main')
-        document.body.appendChild(some)
+
+        var divcontent = document.createElement('div')
+        divcontent.setAttribute('class','divcontent')
+        some.appendChild(divcontent)
+        
+        document.getElementById('maincont').appendChild(some)
 
     }, 3000);
+
+    var circles  =document.getElementById('circles')
 
 setInterval(async() => {
   
