@@ -283,6 +283,16 @@ margin-left: 60px;
   margin-top: 1vh;
 }
 
+
+.gift{
+  width: 100%;
+  height: 60%;
+  background-size:contain ;
+  background-repeat: no-repeat;
+  margin-top: 20%;
+  border-radius: 1vh;
+  position: absolute;
+}
   </style>
   <!--styles-->
 </head>
@@ -349,31 +359,22 @@ var appnder=0
 var topics = ['Business Intelligence','Mobile Dvelopment','Data Managment and Warehousing','Solution Archetecture','Media, Desgin & Creativity','Operation & Bussiness', 'CT, Learning & Development','HSE & Risk Management']
 
  var addedmain = setInterval(() => {
-        
-        var mainclass = document.getElementsByClassName('main')
-       
+  if (appnder==8) {
+          appnder=0
+        }   
+  var mainclass = document.getElementsByClassName('main')
+       console.log(appnder);
           if (mainclass.length > 7) {
            
-            for (m in  mainclass) {     
-
-
-              if (m < 2 ) {
-
-                mainclass[m].remove()
-
-              }
               
-               
-
-           
-              }
-        
-        appnder=0
+                  mainclass[0].remove()
+                
+              
             } 
         
 
        
-
+            
         var some = document.createElement('div')
         some.setAttribute('class','main')
 
@@ -381,18 +382,37 @@ var topics = ['Business Intelligence','Mobile Dvelopment','Data Managment and Wa
         var subtitle = document.createElement('div')
         subtitle.setAttribute('class','subtitle')
 
-        topics.forEach((v,i,a)=>{
         
-          subtitle.innerHTML=topics[appnder]  
         
-        })    
+
+
+        
+          topics.forEach((i,v,a)=>{
+            
+              for (let index = 0; index <= appnder; index++) {
+                if (v==index) {
+                subtitle.innerHTML=topics[appnder]  
+              
+                }
+              }
+          })
+          
+        
+          if (appnder==0) {
+            var gift = document.createElement('img')
+            gift.src ='./1686401734209.gif'
+            gift.setAttribute('class','gift')
+            some.appendChild(gift)
+              
+          }
+        
           
         //...TOPICS
+
         some.appendChild(subtitle)
-        
         document.getElementById('maincont').appendChild(some)
 
-
+        
         appnder++
     }, 3000);
 
