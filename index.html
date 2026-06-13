@@ -3,487 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amjad Al Shukairi - Portfolio</title>
+    <title>Amjad Al Shukairi — Data Strategy & Solutions Lead</title>
+    <meta name="description" content="Amjad Al Shukairi — Data Strategy & Solutions Lead. 7+ years across Telecom, Technology and Oil & Gas. Architect of Oman's national data portals: eCensus, NCSI Open Data, SME and Agriculture platforms.">
+    <meta name="theme-color" content="#04060d">
+    <meta property="og:title" content="Amjad Al Shukairi — Data Strategy & Solutions Lead">
+    <meta property="og:description" content="7+ years across Telecom, Technology and Oil & Gas. Architect of national-scale data platforms.">
+    <meta property="og:image" content="https://amjadshuk.github.io/assets/profile.jpg">
+    <meta property="og:url" content="https://amjadshuk.github.io/">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2304060d'/%3E%3Ctext x='16' y='23' font-size='19' font-family='monospace' font-weight='bold' fill='%2300e5ff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="vendor/fonts/fonts.css">
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Amjad Al Shukairi",
+      "jobTitle": "Data Strategy & Solutions Lead",
+      "email": "mailto:amjad.alshukiri@gmail.com",
+      "url": "https://amjadshuk.github.io/",
+      "address": { "@type": "PostalAddress", "addressLocality": "Muscat", "addressCountry": "OM" },
+      "sameAs": [
+        "https://www.linkedin.com/in/amjad-al-shukairi-59b53072/",
+        "https://github.com/amjadshuk"
+      ]
+    }
+    </script>
 </head>
 <body>
+
+    <!-- Boot loader -->
+    <div id="loader" aria-hidden="true">
+        <div class="boot">
+            <div class="boot-logo">AMJAD<span>_OS</span></div>
+            <div class="boot-lines" id="bootLines"></div>
+            <div class="boot-bar"><span id="bootBar"></span></div>
+        </div>
+    </div>
+
+    <!-- 3D background (starfield + grid) -->
+    <canvas id="bg3d" aria-hidden="true"></canvas>
+    <!-- 3D prototypes overlay (hero core + card skeletons) -->
+    <canvas id="fx3d" aria-hidden="true"></canvas>
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Amjad Al Shukairi</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a class="logo" href="#home">AMJAD<span class="logo-cursor">_</span><span class="logo-tag">AS</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">HOME</a></li>
+                <li><a href="#about" class="nav-link">PROFILE</a></li>
+                <li><a href="#showcase" class="nav-link">SHOWCASE</a></li>
+                <li><a href="#stack" class="nav-link">SKILL TREE</a></li>
+                <li><a href="#contact" class="nav-link">CONTACT</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="https://github.com/amjadshuk" target="_blank" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" class="social-link">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://github.com/Amjadshuk/amjadshuk.github.io/blob/main/CV-8.pdf" 
-                   target="_blank" 
-                   class="btn-primary">
-                    <i class="fas fa-download"></i> Download CV
-                </a>
+                <span class="status-chip"><i class="dot"></i>OPEN FOR PROJECTS</span>
+                <a href="CV-8.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-download"></i> CV</a>
             </div>
-            <button class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-background"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    <span class="subtitle">Hi, I'm</span>
-                    Amjad Al Shukairi
-                </h1>
-                <p class="hero-description">
-                    Data Strategist | Product Leader | Technology Consultant
-                </p>
-                <div class="hero-cta">
-                    <a href="#services" class="btn-primary">View Services</a>
-                    <a href="#contact" class="btn-secondary">Get in Touch</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="profile-card">
-                    <div class="profile-image" style="background-image: url('https://media.licdn.com/dms/image/v2/D4D22AQE97Z6IUCSHwg/feedshare-shrink_1280/B4DZqzOhGlGQAs-/0/1763943522674?e=1766016000&v=beta&t=Cbb_0hBvQWS2aYtHicLcvNsiaM7UMR7Tsjnj86YYASE'); background-size: contain; background-repeat:space;"></div>
-                    <div class="profile-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">7+</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Major Projects</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Industries</span>
-                        </div>
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <nav class="mobile-links">
+            <a href="#home">HOME</a>
+            <a href="#about">PROFILE</a>
+            <a href="#showcase">SHOWCASE</a>
+            <a href="#stack">SKILL TREE</a>
+            <a href="#contact">CONTACT</a>
+            <a href="CV-8.pdf" target="_blank" rel="noopener" class="mm-cv"><i class="fas fa-download"></i> DOWNLOAD CV</a>
+        </nav>
+        <div class="mobile-socials">
+            <a href="https://github.com/amjadshuk" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="mailto:amjad.alshukiri@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <main>
+        <!-- ============ HERO ============ -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <p class="hero-eyebrow">// DATA STRATEGY &amp; SOLUTIONS LEAD</p>
+                    <h1 class="hero-title glitch" data-text="AMJAD AL SHUKAIRI">AMJAD AL SHUKAIRI</h1>
+                    <p class="hero-typed">&gt; <span id="typed"></span><span class="caret">▌</span></p>
+                    <p class="hero-desc">
+                        7+ years turning data into national-scale products across
+                        <b>Telecom</b>, <b>Technology</b> and <b>Oil &amp; Gas</b> —
+                        from Oman's eCensus to live telco segments.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#showcase" class="btn btn-primary"><i class="fas fa-play"></i> EXPLORE SHOWCASE</a>
+                        <a href="CV-8.pdf" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fas fa-file-arrow-down"></i> DOWNLOAD CV</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat"><span class="stat-n" data-count="7" data-suffix="+">0</span><span class="stat-l">YEARS XP</span></div>
+                        <div class="stat"><span class="stat-n" data-count="4" data-suffix="">0</span><span class="stat-l">NATIONAL PORTALS</span></div>
+                        <div class="stat"><span class="stat-n" data-count="3" data-suffix="">0</span><span class="stat-l">INDUSTRIES</span></div>
+                        <div class="stat"><span class="stat-n" data-count="20" data-suffix="+">0</span><span class="stat-l">TEAM LED</span></div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll Down</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="lead">
-                        I've had the chance to work across Telecom, Technology, and Oil & Gas, 
-                        picking up experience in data, strategy, and operations along the way.
-                    </p>
-                    <p>
-                        I enjoy building solutions from scratch, leading teams, and turning ideas 
-                        into products that make an impact. I like roles where I can connect strategy 
-                        with execution, mentor teams, and create practical solutions that last.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-chart-line"></i>
-                            <h4>Data-Driven</h4>
-                            <p>Transform insights into actionable strategies</p>
+                <div class="hero-visual">
+                    <div class="holo hero-holo" id="heroHolo" data-shape="core" data-color="#00e5ff">
+                        <span class="holo-glyph">◈</span>
+                        <span class="holo-caption">LIVE RENDER // SKELETON_CORE v3</span>
+                    </div>
+                    <div class="id-chip">
+                        <img src="assets/profile.jpg" alt="Amjad Al Shukairi" loading="lazy">
+                        <div class="id-meta">
+                            <b>AMJAD AL SHUKAIRI</b>
+                            <span>LVL 7+ · MUSCAT, OM</span>
                         </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-users"></i>
-                            <h4>Team Leader</h4>
-                            <p>Mentor and grow high-performing teams</p>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <h4>Innovator</h4>
-                            <p>Build scalable solutions from concept to launch</p>
-                        </div>
+                        <span class="id-online"></span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <a class="scroll-hint" href="#about" aria-label="Scroll down">
+                <span>SCROLL</span><i class="fas fa-chevron-down"></i>
+            </a>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2 class="section-title">Freelance Services</h2>
-            <p class="section-subtitle">Specialized expertise across multiple domains</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Data Intelligence</h3>
-                    <p>
-                        Transform raw data into strategic insights. Data warehousing, 
-                        governance frameworks, and analytics solutions that drive decision-making.
-                    </p>
-                    <ul class="service-features">
-                        <li>Data Strategy & Architecture</li>
-                        <li>Business Intelligence Dashboards</li>
-                        <li>Data Governance Implementation</li>
-                        <li>Advanced Analytics</li>
-                    </ul>
-                </div>
-
-                <div class="service-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Software Solutions Consultancy</h3>
-                    <p>
-                        End-to-end technology consulting from architecture design to implementation. 
-                        Scalable solutions for government and enterprise clients.
-                    </p>
-                    <ul class="service-features">
-                        <li>Solution Architecture</li>
-                        <li>Technical Strategy</li>
-                        <li>System Integration</li>
-                        <li>Technology Stack Selection</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-users-cog"></i>
-                    </div>
-                    <h3>Corporate Leadership</h3>
-                    <p>
-                        Strategic leadership and operational excellence. Team building, 
-                        process optimization, and organizational transformation.
-                    </p>
-                    <ul class="service-features">
-                        <li>Strategic Planning</li>
-                        <li>Team Development</li>
-                        <li>Change Management</li>
-                        <li>Operational Excellence</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <h3>Product, Marketing & Social Media</h3>
-                    <p>
-                        Product strategy from concept to market. Digital marketing campaigns 
-                        and social media presence that engage and convert.
-                    </p>
-                    <ul class="service-features">
-                        <li>Product Strategy & Development</li>
-                        <li>Go-to-Market Planning</li>
-                        <li>Digital Marketing Campaigns</li>
-                        <li>Social Media Management</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-hard-hat"></i>
-                    </div>
-                    <h3>Health, Safety & Environment</h3>
-                    <p>
-                        Comprehensive HSE programs and compliance frameworks. 
-                        Risk management and safety culture development.
-                    </p>
-                    <ul class="service-features">
-                        <li>HSE Program Development</li>
-                        <li>Risk Assessment & Management</li>
-                        <li>Compliance Auditing</li>
-                        <li>Safety Training & Culture</li>
-                    </ul>
-                </div>
+        <!-- Marquee divider -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>DATA STRATEGY ✦ SOLUTION ARCHITECTURE ✦ PRODUCT LEADERSHIP ✦ ANALYTICS ENGINEERING ✦ DATA GOVERNANCE ✦ BI &amp; DASHBOARDS ✦ CLOUD &amp; INFRASTRUCTURE ✦ HSE INTELLIGENCE ✦&nbsp;</span>
+                <span>DATA STRATEGY ✦ SOLUTION ARCHITECTURE ✦ PRODUCT LEADERSHIP ✦ ANALYTICS ENGINEERING ✦ DATA GOVERNANCE ✦ BI &amp; DASHBOARDS ✦ CLOUD &amp; INFRASTRUCTURE ✦ HSE INTELLIGENCE ✦&nbsp;</span>
             </div>
         </div>
-    </section>
 
-    <!-- Experience Timeline with Media -->
-    <section id="experience" class="experience-section">
-        <div class="container">
-            <h2 class="section-title">Professional Journey</h2>
-            <div class="timeline">
-                <!-- Telecom Experience -->
-                <div class="timeline-item" data-industry="telecom">
-                    <div class="timeline-marker telecom"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2025 – Present</span>
-                        <h3>Telecom Industry</h3>
-                        <h4>Friendi Mobile Oman</h4>
-                        <p>
-                            Managing core segment assets, shaping product strategies, and 
-                            leveraging data insights to bring innovative solutions to market.
+        <!-- ============ ABOUT ============ -->
+        <section id="about" class="about">
+            <div class="container">
+                <header class="sec-head reveal">
+                    <span class="sec-tag">// 01 · PLAYER PROFILE</span>
+                    <h2 class="glitch" data-text="WHO IS AMJAD?">WHO IS AMJAD?</h2>
+                </header>
+                <div class="about-grid">
+                    <div class="pp-frame reveal">
+                        <img src="assets/profile.jpg" alt="Amjad Al Shukairi — portrait" loading="lazy">
+                        <div class="pp-scan"></div>
+                        <span class="pp-label">ID: AMJAD_AS // VERIFIED ✓</span>
+                    </div>
+                    <div class="about-text reveal">
+                        <p class="lead">
+                            Results-oriented leader with 7+ years across <b>Telecom, Technology and Oil &amp; Gas</b> —
+                            expert at bridging technical data engineering with high-level business strategy.
                         </p>
-                        <div class="experience-tags">
-                            <span class="tag">Product Management</span>
-                            <span class="tag">Strategy</span>
-                            <span class="tag">Data Analytics</span>
-                        </div>
-                        <div class="company-logos">
-                            <img src="https://aam.friendioman.com/RechargeOnline/Content/FormContent/images/friendi.jpg" alt="Friendi Mobile" class="company-logo">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Technology Experience -->
-                <div class="timeline-item" data-industry="technology">
-                    <div class="timeline-marker technology"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2022 – 2025</span>
-                        <h3>Technology Sector</h3>
-                        <h4>Rihal.om</h4>
                         <p>
-                            Led analytics team growth, spearheaded major government projects, 
-                            and designed unified data infrastructure for scalable portal solutions.
+                            I build solutions from scratch and turn complex data into high-impact products:
+                            national census platforms, open-data infrastructures, telco product strategies and
+                            field-grade safety systems. Proven track record of designing scalable architectures,
+                            mentoring analytics teams and managing core business assets.
                         </p>
-                        
-                        <!-- Media Showcase for Technology Projects -->
-                        <div class="media-showcase">
-                            <div class="media-item">
-                                <video class="project-video" controls muted>
-                                    <source src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/Whatwebelievein.mp4" type="video/mp4">
-                                </video>
-                                <p class="media-caption">Rihal - What We Believe In</p>
-                            </div>
+                        <div class="about-chips">
+                            <span class="chip"><i class="fas fa-location-dot"></i> Muscat, Oman</span>
+                            <span class="chip"><i class="fas fa-graduation-cap"></i> ACG Norton College (NZ) — Foundation</span>
+                            <span class="chip"><i class="fas fa-briefcase"></i> Open for freelance &amp; consulting</span>
                         </div>
-
-                        <div class="project-highlights">
-                            <h5>Key Projects:</h5>
-                            <ul>
-                                <li>
-                                    <a href="https://www.ecensus.gov.om/" target="_blank">
-                                        NCSI eCensus Portal
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://info.sme.gov.om/" target="_blank">
-                                        SME Open Data Portal
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </a>
-                                </li>
-                                <li>NCSI Open Data Portal</li>
-                                <li>Ministry of Agriculture Portal</li>
-                            </ul>
-                        </div>
-
-                        <!-- Data Management Tools -->
-                        <div class="tech-stack">
-                            <h5>Technologies & Tools:</h5>
-                            <div class="tech-logos">
-                                <img src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/DM/airbyte-logo-CC005A0105-seeklogo.com.png" alt="Airbyte" class="tech-logo">
-                                <img src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/DM/Apache_Software_Foundation_Logo_(2016).svg.png" alt="Apache" class="tech-logo">
-                                <img src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/DM/dagster-primary-mark.png" alt="Dagster" class="tech-logo">
-                                <img src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/DM/Databricks_Logo.png" alt="Databricks" class="tech-logo">
-                            </div>
-                        </div>
-
-                        <!-- Solution Architecture Tools -->
-                        <div class="tech-stack">
-                            <h5>Solution Architecture:</h5>
-                            <div class="tech-logos">
-                                <img src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/SA/Kubernetes_logo_without_workmark.svg.png" alt="Kubernetes" class="tech-logo">
-                                <img src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/SA/Docker-Symbol.png" alt="Docker" class="tech-logo">
-                            </div>
-                        </div>
-
-                        <div class="experience-tags">
-                            <span class="tag">Team Leadership</span>
-                            <span class="tag">Data Governance</span>
-                            <span class="tag">Solution Architecture</span>
-                            <span class="tag">Government Projects</span>
-                        </div>
-                        <div class="company-logos">
-                            <img src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/1686401734209.gif" alt="Rihal" class="company-logo">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Oil & Gas Experience -->
-                <div class="timeline-item" data-industry="oilgas">
-                    <div class="timeline-marker oilgas"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2018 – 2022</span>
-                        <h3>Oil & Gas Industry</h3>
-                        <h4>BP Contracts & Operations</h4>
-                        <p>
-                            Specialized in fleet monitoring, road safety operations, and HSE supervision. 
-                            Developed innovative tools and led large operational teams.
-                        </p>
-
-                        <!-- Mobile App Demo -->
-                        <div class="media-showcase">
-                            <div class="media-item mobile-demo">
-                                <video class="project-video mobile-screen" controls muted>
-                                    <source src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/Screen_Recording_20230611-132959_Speedometer.mp4" type="video/mp4">
-                                </video>
-                                <p class="media-caption">Road Analysis Mobile App - Real-time Monitoring</p>
-                            </div>
-                        </div>
-
-                        <div class="project-highlights">
-                            <h5>Notable Achievements:</h5>
-                            <ul>
-                                <li>Built "Road Analysis" app for real-time road health monitoring</li>
-                                <li>Led operations teams of 20+ personnel</li>
-                                <li>Implemented comprehensive HSE frameworks</li>
-                            </ul>
-                        </div>
-                        <div class="experience-tags">
-                            <span class="tag">Operations Management</span>
-                            <span class="tag">HSE</span>
-                            <span class="tag">Fleet Monitoring</span>
-                            <span class="tag">Team Leadership</span>
-                        </div>
-                        <div class="company-logos">
-                            <img src="https://khazzanlogistics.com/KLMS_landscape.png" alt="KLMS" class="company-logo">
-                            <img src="https://th.bing.com/th/id/R.a66ced48ce78eff2aaece6dfa1ad0943?rik=aLHgXTdoVyUbTg&pid=ImgRaw&r=0" alt="BP" class="company-logo">
+                        <div class="about-traits">
+                            <div class="trait"><i class="fas fa-chart-line"></i><div><b>DATA-DRIVEN</b><span>Insight → strategy → shipped product</span></div></div>
+                            <div class="trait"><i class="fas fa-users"></i><div><b>TEAM LEADER</b><span>Mentors teams that outperform their size</span></div></div>
+                            <div class="trait"><i class="fas fa-bolt"></i><div><b>BUILDER</b><span>From zero to national scale, repeatedly</span></div></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Portfolio/Projects Section with Media Gallery -->
-    <section id="portfolio" class="portfolio-section">
-        <div class="container">
-            <h2 class="section-title">Featured Work</h2>
-            <p class="section-subtitle">Highlights from my professional journey</p>
-            
-            <div class="portfolio-grid">
-                <!-- Business Intelligence Project -->
-                <div class="portfolio-item" data-category="data">
-                    <div class="portfolio-image">
-                        <img src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/1686401734209.gif" alt="Business Intelligence">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Business Intelligence</h3>
-                        <p>Data-driven insights and analytics solutions</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Analytics</span>
-                            <span class="tag">Dashboards</span>
-                        </div>
-                    </div>
+        <!-- ============ SHOWCASE ============ -->
+        <section id="showcase" class="showcase">
+            <div class="container">
+                <header class="sec-head reveal">
+                    <span class="sec-tag">// 02 · SELECT CATEGORY</span>
+                    <h2 class="glitch" data-text="THE SHOWCASE">THE SHOWCASE</h2>
+                    <p class="sec-sub">Switch tags. Scroll right. Hover to power up. Hit <b>EXPLORE</b> for the full intel feed.</p>
+                </header>
+
+                <div class="tabs reveal" id="tabs" role="tablist" aria-label="Showcase categories"></div>
+
+                <div class="rail-zone">
+                    <button class="rail-btn prev" id="railPrev" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
+                    <div class="rails" id="rails"></div>
+                    <button class="rail-btn next" id="railNext" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
                 </div>
+                <div class="rail-progress"><span id="railProgress"></span></div>
+                <p class="rail-hint"><i class="fas fa-arrows-left-right"></i> DRAG / SCROLL SIDEWAYS — <span id="railCount"></span></p>
+            </div>
+        </section>
 
-                <!-- Mobile Development Project -->
-                <div class="portfolio-item" data-category="mobile">
-                    <div class="portfolio-image">
-                        <video class="portfolio-video" muted loop>
-                            <source src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/Screen_Recording_20230611-132959_Speedometer.mp4" type="video/mp4">
-                        </video>
+        <!-- ============ SKILL TREE ============ -->
+        <section id="stack" class="stacksec">
+            <div class="container">
+                <header class="sec-head reveal">
+                    <span class="sec-tag">// 03 · SKILL TREE</span>
+                    <h2 class="glitch" data-text="LOADOUT">LOADOUT</h2>
+                </header>
+                <div class="stack-grid">
+                    <div class="meters reveal">
+                        <div class="meter" data-v="95"><div class="meter-top"><span>PRODUCT &amp; STRATEGY</span><b>95</b></div><div class="meter-bar"><i></i></div></div>
+                        <div class="meter" data-v="92"><div class="meter-top"><span>DATA ENGINEERING &amp; BI</span><b>92</b></div><div class="meter-bar"><i></i></div></div>
+                        <div class="meter" data-v="90"><div class="meter-top"><span>SOLUTION ARCHITECTURE</span><b>90</b></div><div class="meter-bar"><i></i></div></div>
+                        <div class="meter" data-v="93"><div class="meter-top"><span>TEAM LEADERSHIP</span><b>93</b></div><div class="meter-bar"><i></i></div></div>
+                        <div class="meter" data-v="86"><div class="meter-top"><span>FULL-STACK DEV</span><b>86</b></div><div class="meter-bar"><i></i></div></div>
+                        <div class="meter" data-v="88"><div class="meter-top"><span>CLOUD &amp; INFRASTRUCTURE</span><b>88</b></div><div class="meter-bar"><i></i></div></div>
                     </div>
-                    <div class="portfolio-content">
-                        <h3>Mobile Development</h3>
-                        <p>Real-time road analysis and monitoring system</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Mobile App</span>
-                            <span class="tag">Real-time</span>
+                    <div class="loadout reveal">
+                        <div class="load-group">
+                            <h4>// LEADERSHIP &amp; STRATEGY</h4>
+                            <div class="chips"><span>Product Strategy</span><span>Team Mentorship</span><span>Solution Architecture</span><span>Data Governance</span><span>Project Management</span></div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Media & Design Project -->
-                <div class="portfolio-item" data-category="media">
-                    <div class="portfolio-image">
-                        <video class="portfolio-video" muted loop>
-                            <source src="https://raw.githubusercontent.com/Amjadshuk/amjadshuk.github.io/refs/heads/main/Whatwebelievein.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="portfolio-content">
-                        <h3>Media, Design & Creativity</h3>
-                        <p>Brand storytelling and digital presence</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Video Production</span>
-                            <span class="tag">Branding</span>
+                        <div class="load-group">
+                            <h4>// DATA &amp; BI</h4>
+                            <div class="chips"><span>Power BI</span><span>Tableau</span><span>SQL</span><span>DAX</span><span>MDX</span><span>ETL / ELT</span><span>DWH (OLAP/OLTP)</span></div>
+                        </div>
+                        <div class="load-group">
+                            <h4>// DEVELOPMENT</h4>
+                            <div class="chips"><span>Python</span><span>JavaScript / TypeScript</span><span>Java</span><span>Rust</span><span>Kotlin</span><span>Flutter</span></div>
+                        </div>
+                        <div class="load-group">
+                            <h4>// CLOUD &amp; INFRA</h4>
+                            <div class="chips"><span>Docker</span><span>Kubernetes</span><span>Apache Kafka</span><span>Airflow</span><span>Azure Databricks</span><span>Oracle BI</span><span>Nginx</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
-            <p class="section-subtitle">
-                Ready to collaborate on your next project? Let's discuss how I can help.
-            </p>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <i class="fas fa-envelope"></i>
-                        <h4>Email</h4>
-                        <a href="mailto:amjad.alshukiri@gmail.com">amjad.alshukiri@gmail.com</a>
-                    </div>
-                    <div class="contact-card">
-                        <i class="fab fa-linkedin"></i>
-                        <h4>LinkedIn</h4>
-                        <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank">
-                            Connect with me
-                        </a>
-                    </div>
-                    <div class="contact-card">
-                        <i class="fab fa-github"></i>
-                        <h4>GitHub</h4>
-                        <a href="https://github.com/amjadshuk" target="_blank">
-                            View my code
-                        </a>
-                    </div>
-                </div>
-                <div class="cta-box">
-                    <h3>Download My CV</h3>
-                    <p>Get a detailed overview of my experience and qualifications</p>
-                    <a href="https://github.com/Amjadshuk/amjadshuk.github.io/blob/main/CV-8.pdf" 
-                       target="_blank" 
-                       class="btn-primary btn-large">
-                        <i class="fas fa-file-download"></i>
-                        Download CV
+        <!-- ============ CONTACT ============ -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <header class="sec-head reveal">
+                    <span class="sec-tag">// 04 · COMMS</span>
+                    <h2 class="glitch" data-text="OPEN A CHANNEL">OPEN A CHANNEL</h2>
+                    <p class="sec-sub">Ready to collaborate? Pick a frequency.</p>
+                </header>
+                <div class="contact-grid reveal">
+                    <a class="contact-card" href="mailto:amjad.alshukiri@gmail.com">
+                        <i class="fas fa-envelope"></i><b>EMAIL</b><span>amjad.alshukiri@gmail.com</span>
+                    </a>
+                    <a class="contact-card" href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin-in"></i><b>LINKEDIN</b><span>amjad-al-shukairi</span>
+                    </a>
+                    <a class="contact-card" href="https://github.com/amjadshuk" target="_blank" rel="noopener">
+                        <i class="fab fa-github"></i><b>GITHUB</b><span>@amjadshuk</span>
+                    </a>
+                    <a class="contact-card" href="https://wa.me/96899784498" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i><b>WHATSAPP</b><span>+968 9978 4498</span>
                     </a>
                 </div>
+                <div class="cv-cta reveal">
+                    <div>
+                        <h3>FULL MISSION FILE</h3>
+                        <p>Complete CV — experience, certificates &amp; the whole arsenal.</p>
+                    </div>
+                    <a href="CV-8.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-lg"><i class="fas fa-file-arrow-down"></i> DOWNLOAD CV</a>
+                </div>
             </div>
+        </section>
+    </main>
+
+    <!-- ============ DETAIL PANEL (slide-over) ============ -->
+    <div class="scrim" id="scrim"></div>
+    <aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle">
+        <div class="ticker" aria-hidden="true">
+            <span class="ticker-live">● LIVE</span>
+            <div class="ticker-clip"><div class="ticker-track" id="tickerTrack"></div></div>
+            <button class="panel-close" id="panelClose" aria-label="Close panel"><i class="fas fa-xmark"></i></button>
         </div>
-    </section>
+        <div class="panel-holo">
+            <canvas id="panelCanvas"></canvas>
+            <span class="holo-glyph" id="panelGlyph">◆</span>
+            <span class="holo-caption" id="panelShapeTag">PROTOTYPE //</span>
+        </div>
+        <header class="panel-head">
+            <div class="panel-meta">
+                <span class="chip cat-chip" id="panelCat">EXPERIENCE</span>
+                <span class="panel-period" id="panelPeriod"></span>
+            </div>
+            <h3 id="panelTitle"></h3>
+            <p class="panel-org" id="panelOrg"></p>
+            <div class="tags" id="panelTags"></div>
+        </header>
+        <div class="panel-body" id="panelBody">
+            <div class="panel-section">
+                <h5>// BRIEFING</h5>
+                <div id="panelBriefing"></div>
+            </div>
+            <div class="panel-section">
+                <h5>// MISSION LOG</h5>
+                <ul class="mission-log" id="panelLog"></ul>
+            </div>
+            <div class="panel-section" id="panelMediaWrap" hidden>
+                <h5>// VISUAL FEED</h5>
+                <div class="panel-media" id="panelMedia"></div>
+            </div>
+            <div class="panel-section">
+                <h5>// LOADOUT</h5>
+                <div class="chips" id="panelStack"></div>
+            </div>
+            <a class="btn btn-primary panel-link" id="panelLink" target="_blank" rel="noopener" hidden></a>
+            <div class="panel-endcap">— END OF FEED —</div>
+        </div>
+        <footer class="panel-foot">
+            <button class="btn btn-ghost btn-sm" id="prevItem" aria-label="Previous item"><i class="fas fa-chevron-left"></i> PREV</button>
+            <button class="auto-btn" id="autoBtn" aria-label="Pause auto-scroll" title="Auto-scroll"><i class="fas fa-pause"></i> AUTO</button>
+            <button class="btn btn-ghost btn-sm" id="nextItem" aria-label="Next item">NEXT <i class="fas fa-chevron-right"></i></button>
+            <div class="panel-progress"><span id="panelProgress"></span></div>
+        </footer>
+    </aside>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-text">
-                    <p>&copy; 2025 Amjad Al Shukairi. All rights reserved.</p>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/amjadshuk" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
+        <div class="container footer-inner">
+            <p>© 2026 AMJAD AL SHUKAIRI — ALL SYSTEMS OPERATIONAL</p>
+            <p class="footer-built">BUILT WITH <span>THREE.JS</span> · DARK MODE ONLY</p>
+            <div class="footer-links">
+                <a href="https://github.com/amjadshuk" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:amjad.alshukiri@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <noscript>
+        <style>#loader{display:none}</style>
+        <p style="text-align:center;padding:1rem;color:#8aa3b8">This site is best experienced with JavaScript enabled — the 3D showcase needs it.</p>
+    </noscript>
+
+    <script src="data.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
