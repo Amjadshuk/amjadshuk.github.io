@@ -113,6 +113,7 @@ window.PORTFOLIO_DATA = {
       short: 'Ran 20+ road-safety & HSE ops at BP Khazzan Block 61.',
       blurb: 'Supervised road safety and HSE operations at BP Khazzan Block 61 — people, vehicles, procedures and supply chains.',
       tags: ['Operations', 'HSE', 'Road Safety'],
+      media: { type: 'video', src: 'Whatwebelievein.mp4', caption: 'What We Believe In — operations & safety culture' },
       headline: 'OPERATIONS COMMAND // BP KHAZZAN BLOCK 61 // SAFETY FIRST',
       briefing: [
         'At BP’s Khazzan Block 61 I led an operations team of 20+ across fleet monitoring, road safety and HSE supervision.',

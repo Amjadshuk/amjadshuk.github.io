@@ -32,6 +32,7 @@
     </script>
 </head>
 <body>
+    <script>try{if(localStorage.getItem('amjad-theme')==='light')document.body.classList.add('light');}catch(e){}</script>
 
     <!-- Boot loader -->
     <div id="loader" aria-hidden="true">
@@ -67,6 +68,7 @@
                 <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="mailto:amjad.alshukiri@gmail.com" class="icon-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 <button class="btn btn-ghost btn-sm" id="aboutBtn">ABOUT</button>
+                <button class="theme-btn" id="themeBtn" aria-label="Switch to light mode" title="Light / dark"><i class="fas fa-sun"></i></button>
                 <a href="CV-8.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-download"></i> CV</a>
                 <button class="more-btn" id="moreBtn" aria-label="Menu"><i class="fas fa-ellipsis-vertical"></i></button>
             </div>
@@ -135,10 +137,12 @@
             <div class="ticker-clip"><div class="ticker-track" id="tickerTrack"></div></div>
             <button class="panel-close" id="panelClose" aria-label="Close panel"><i class="fas fa-xmark"></i></button>
         </div>
-        <div class="panel-holo">
+        <div class="panel-cover" id="panelCover">
             <canvas id="panelCanvas"></canvas>
+            <div class="cover-media" id="coverMedia"></div>
             <span class="holo-glyph" id="panelGlyph">◆</span>
             <span class="holo-caption" id="panelShapeTag">PROTOTYPE //</span>
+            <span class="cover-caption" id="coverCaption"></span>
         </div>
         <header class="panel-head">
             <div class="panel-meta">
@@ -157,10 +161,6 @@
             <div class="panel-section">
                 <h5>// MISSION LOG</h5>
                 <ul class="mission-log" id="panelLog"></ul>
-            </div>
-            <div class="panel-section" id="panelMediaWrap" hidden>
-                <h5>// VISUAL FEED</h5>
-                <div class="panel-media" id="panelMedia"></div>
             </div>
             <div class="panel-section">
                 <h5>// LOADOUT</h5>

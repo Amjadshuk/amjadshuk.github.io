@@ -46,6 +46,7 @@ body.modal-open { }
 img, video { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 b { font-weight: 700; }
+[hidden] { display: none !important; }   /* beat .btn display:inline-flex */
 
 /* CRT scanlines */
 body::after {
@@ -291,15 +292,28 @@ body::after {
 .panel-close { background: none; border: 1px solid rgba(138, 163, 184, 0.35); color: var(--txt); width: 32px; height: 32px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast) var(--ease-snap), box-shadow var(--t-fast); }
 .panel-close:hover { border-color: var(--red); color: var(--red); transform: scale(1.12) rotate(90deg); box-shadow: 0 0 14px -2px var(--red); }
 
-.panel-holo { position: relative; height: clamp(160px, 22vh, 220px); border-bottom: 1px solid color-mix(in srgb, var(--c) 22%, transparent);
+.panel-cover { position: relative; overflow: hidden; height: clamp(170px, 23vh, 230px); border-bottom: 1px solid color-mix(in srgb, var(--c) 22%, transparent);
     background: radial-gradient(ellipse at 50% 60%, color-mix(in srgb, var(--c) 9%, transparent), transparent 65%),
         repeating-linear-gradient(0deg, rgba(0, 229, 255, 0.04) 0 1px, transparent 1px 24px),
         repeating-linear-gradient(90deg, rgba(0, 229, 255, 0.04) 0 1px, transparent 1px 24px), rgba(5, 8, 16, 0.7);
     flex-shrink: 0; }
-.panel-holo canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.panel-holo .holo-glyph { display: none; position: absolute; inset: 0; place-items: center; font-size: 3rem; color: var(--c); opacity: 0.55; text-shadow: 0 0 30px var(--c); }
-.no3d .panel-holo .holo-glyph { display: grid; }
-.panel-holo .holo-caption { position: absolute; left: 12px; bottom: 9px; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; color: color-mix(in srgb, var(--c) 70%, var(--dim)); }
+.panel-cover canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.panel-cover .holo-glyph { display: none; position: absolute; inset: 0; place-items: center; font-size: 3rem; color: var(--c); opacity: 0.55; text-shadow: 0 0 30px var(--c); }
+.no3d .panel-cover .holo-glyph { display: grid; }
+.panel-cover .holo-caption { position: absolute; left: 12px; bottom: 9px; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; color: color-mix(in srgb, var(--c) 70%, var(--dim)); }
+
+/* article-cover media (video / image) for the side description */
+.panel-cover.has-media { height: clamp(190px, 28vh, 280px); background: #05080f; }
+.cover-media { display: none; position: absolute; inset: 0; place-items: center; background: #05080f; }
+.panel-cover.has-media .cover-media { display: grid; }
+.panel-cover.has-media canvas, .panel-cover.has-media .holo-glyph, .panel-cover.has-media .holo-caption { display: none; }
+.cover-media video { width: 100%; height: 100%; object-fit: contain; }
+.cover-media img { width: 100%; height: 100%; object-fit: cover; }
+.panel-cover.has-media::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--c) 14%, transparent) 0%, transparent 22%, transparent 60%, rgba(8, 12, 24, 0.92) 100%); }
+.cover-caption { display: none; position: absolute; left: 14px; right: 14px; bottom: 9px; z-index: 2;
+    font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--txt); text-shadow: 0 1px 5px #000; }
+.panel-cover.has-media .cover-caption { display: block; }
 
 .panel-head { padding: 1rem 1.4rem 0.8rem; flex-shrink: 0; }
 .panel-meta { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
@@ -411,3 +425,70 @@ body::after {
     .ticker-track, .marquee-track { animation: none !important; }
     #fxcursor, #spotlight { display: none; }
 }
+
+/* ============ Theme toggle button ============ */
+.theme-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.06);
+    color: #ffffff; cursor: pointer; font-size: 0.95rem;
+    display: inline-grid; place-items: center;
+    transition: transform var(--t-fast) var(--ease-snap), background var(--t-fast), box-shadow var(--t-fast), color var(--t-fast);
+}
+.theme-btn:hover { transform: rotate(40deg) scale(1.12); box-shadow: 0 0 16px rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.14); }
+.theme-btn i { filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)); }
+
+/* ============================================================
+   LIGHT THEME  (default is dark; toggled via the sun icon)
+   ============================================================ */
+body.light {
+    --txt: #0c1726;
+    --dim: #56697d;
+    --line: rgba(13, 110, 140, 0.22);
+    --bg0: #e8eef6;
+    background:
+        radial-gradient(1100px 650px at 82% -10%, rgba(0, 150, 180, 0.12), transparent 60%),
+        radial-gradient(880px 560px at -8% 60%, rgba(220, 40, 170, 0.07), transparent 60%),
+        var(--bg0);
+}
+body.light::after { opacity: 0.08; }                 /* soften scanlines */
+body.light #bg3d { opacity: 0.4; }                    /* dim starfield */
+body.light #spotlight { display: none; }
+
+body.light .topbar { background: rgba(255, 255, 255, 0.72); }
+body.light .brand-online { border-color: #fff; }
+body.light .icon-link { color: #4a5d70; }
+body.light .icon-link:hover { color: #067b94; background: rgba(0, 150, 180, 0.1); }
+body.light .more-btn { border-color: var(--line); color: #067b94; }
+body.light .theme-btn { border-color: rgba(13, 110, 140, 0.4); background: rgba(13, 110, 140, 0.06); color: #b9760a; }
+body.light .theme-btn i { filter: drop-shadow(0 0 5px rgba(255, 179, 0, 0.5)); }
+
+/* category-tinted text, darkened for contrast on light surfaces */
+body.light .cat-label { color: color-mix(in srgb, var(--c) 62%, #05202a); background: color-mix(in srgb, var(--c) 15%, #ffffff); border-color: color-mix(in srgb, var(--c) 40%, #ffffff); text-shadow: none; }
+body.light .item-title { background: linear-gradient(115deg, #0b1726 38%, color-mix(in srgb, var(--c) 60%, #06202a) 118%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+body.light .item-org { color: color-mix(in srgb, var(--c) 58%, #05202a); }
+body.light .item-period { color: #5a6b7e; }
+body.light .item-short { color: #41566a; }
+body.light .slide .tags span { color: #41566a; border-color: rgba(20, 45, 65, 0.22); }
+
+/* counter pill (so it reads over light page or dark proto patch) */
+body.light .counter { background: rgba(255, 255, 255, 0.72); border: 1px solid var(--line); border-radius: 10px; padding: 5px 10px 6px 12px; padding-right: 52px; backdrop-filter: blur(6px); }
+body.light .counter-num span { color: #5a6b7e; }
+body.light .counter-cat, body.light .counter-num b { color: color-mix(in srgb, var(--c) 58%, #05202a); }
+body.light .counter-ring .ring-bg { stroke: rgba(0, 0, 0, 0.12); }
+
+/* prototype panel stays dark (the WebGL renderer paints a dark patch behind it) */
+body.light .stage-proto { background: transparent; }
+body.light .proto-tag { color: color-mix(in srgb, var(--c) 60%, #9fb3c4); }
+body.light .proto-hint { color: #cdd8e2; }
+
+/* dock */
+body.light .dock-btn { background: rgba(255, 255, 255, 0.72); color: #067b94; border-color: rgba(13, 110, 140, 0.4); }
+body.light .dock-btn:hover { background: rgba(0, 150, 180, 0.14); }
+body.light .seq-tab { background: rgba(255, 255, 255, 0.66); color: #56697d; border-color: var(--line); }
+body.light .seq-tab.active { color: color-mix(in srgb, var(--tc) 60%, #05202a); background: color-mix(in srgb, var(--tc) 15%, #ffffff); border-color: color-mix(in srgb, var(--tc) 40%, #ffffff); text-shadow: none; box-shadow: 0 0 14px -6px var(--tc); }
+body.light .tl-seg { background: rgba(0, 0, 0, 0.12); }
+body.light .status-chip { color: #1f9d57; border-color: rgba(31, 157, 87, 0.45); }
+body.light .status-chip .dot { background: #1f9d57; box-shadow: 0 0 8px #1f9d57; }
+
+/* keep overlays (EXPLORE panel + About sheet) on their dark surfaces in both themes */
+

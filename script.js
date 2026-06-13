@@ -13,6 +13,18 @@ const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const catOf = id => DATA.categories.find(c => c.id === id);
 const itemsOf = cat => DATA.items.filter(i => i.cat === cat);
 
+/* Outbound link, correct per category:
+   - experience -> no outbound link (irrelevant)
+   - project    -> its real live URL if any, else LinkedIn to discuss
+   - service    -> LinkedIn as contact
+   So LinkedIn-as-contact appears for services & projects only. */
+function linkFor(item) {
+    if (item.cat === 'experience') return null;
+    if (item.link) return { href: item.link.href, label: item.link.label, icon: 'fas fa-arrow-up-right-from-square' };
+    return { href: DATA.profile.linkedin, icon: 'fab fa-linkedin-in',
+        label: item.cat === 'services' ? 'CONNECT ON LINKEDIN' : 'DISCUSS ON LINKEDIN' };
+}
+
 /* Round-robin queue: Experience -> Project -> Service -> Experience ... */
 function buildQueue() {
     const cols = DATA.categories.map(c => itemsOf(c.id));
@@ -44,12 +56,13 @@ function paintSlide(item) {
     $('#itemOrg').textContent = item.org;
     $('#itemShort').textContent = item.short || item.blurb;
     $('#itemTags').innerHTML = item.tags.map(t => `<span>${t}</span>`).join('');
-    const link = $('#slideLink');
-    if (item.link) {
+    const l = linkFor(item), link = $('#slideLink');
+    if (l) {
         link.hidden = false;
-        link.href = item.link.href;
-        link.innerHTML = `<i class="fas fa-arrow-up-right-from-square"></i> ${item.link.label}`;
-    } else link.hidden = true;
+        link.href = l.href;
+        link.target = '_blank';
+        link.innerHTML = `<i class="${l.icon}"></i> ${l.label}`;
+    } else { link.hidden = true; link.innerHTML = ''; }
     $('#protoTag').textContent = `PROTOTYPE // ${item.shape.toUpperCase()}_SKELETON`;
     $('#protoGlyph').textContent = cat.glyph;
 }
@@ -130,7 +143,7 @@ tl.addEventListener('click', e => {
    EXPLORE detail panel (slide-over + ticker + auto-scroll)
    ============================================================ */
 const panel = $('#panel'), scrim = $('#scrim'), panelBody = $('#panelBody');
-let panelOpenId = null, lastFocus = null;
+let panelOpenId = null, lastFocus = null, panelHas3D = true;
 const auto = { on: false, holdUntil: 0, pos: 0 };
 
 function modalOpen() { return !!panelOpenId || $('#aboutSheet').classList.contains('open'); }
@@ -164,20 +177,29 @@ function openPanel(id) {
     const head = `${cat.glyph} ${item.headline}   ✦   `;
     $('#tickerTrack').innerHTML = `<span>${head.repeat(3)}</span><span>${head.repeat(3)}</span>`;
 
-    const mediaWrap = $('#panelMediaWrap'), media = $('#panelMedia');
+    // cover: media as an article-style cover, else the 3D prototype
+    const cover = $('#panelCover'), coverMedia = $('#coverMedia');
     if (item.media) {
-        mediaWrap.hidden = false;
-        media.innerHTML = item.media.type === 'video'
-            ? `<figure><video src="${item.media.src}" controls muted playsinline preload="metadata"></video><figcaption>${item.media.caption}</figcaption></figure>`
-            : `<figure><img src="${item.media.src}" alt="${item.media.caption}" loading="lazy"><figcaption>${item.media.caption}</figcaption></figure>`;
-    } else { mediaWrap.hidden = true; media.innerHTML = ''; }
+        cover.classList.add('has-media');
+        coverMedia.innerHTML = item.media.type === 'video'
+            ? `<video src="${item.media.src}" muted loop playsinline autoplay preload="metadata" controls></video>`
+            : `<img src="${item.media.src}" alt="${item.media.caption}" loading="lazy">`;
+        $('#coverCaption').textContent = item.media.caption;
+        panelHas3D = false;
+    } else {
+        cover.classList.remove('has-media');
+        coverMedia.innerHTML = '';
+        $('#coverCaption').textContent = '';
+        panelHas3D = true;
+    }
 
-    const link = $('#panelLink');
-    if (item.link) {
+    const l = linkFor(item), link = $('#panelLink');
+    if (l) {
         link.hidden = false;
-        link.href = item.link.href;
-        link.innerHTML = `<i class="fas fa-arrow-up-right-from-square"></i> ${item.link.label}`;
-    } else link.hidden = true;
+        link.href = l.href;
+        link.target = '_blank';
+        link.innerHTML = `<i class="${l.icon}"></i> ${l.label}`;
+    } else { link.hidden = true; link.innerHTML = ''; }
 
     panelBody.scrollTop = 0;
     auto.on = !reduced; auto.pos = 0; auto.holdUntil = performance.now() + 1600;
@@ -185,7 +207,8 @@ function openPanel(id) {
 
     scrim.classList.add('open');
     panel.classList.add('open');
-    three?.panelShow(item.shape, cat.color);
+    if (panelHas3D) three?.panelShow(item.shape, cat.color);
+    $('#coverMedia').querySelector('video')?.play?.().catch(() => {});
     setTimeout(() => $('#panelClose').focus(), 80);
 }
 
@@ -194,7 +217,7 @@ function closePanel() {
     panelOpenId = null;
     scrim.classList.remove('open');
     panel.classList.remove('open');
-    $('#panelMedia').querySelector('video')?.pause();
+    $('#coverMedia').querySelector('video')?.pause();
     lastFocus?.focus?.();
 }
 
@@ -236,6 +259,19 @@ aboutScrim.addEventListener('click', closeAbout);
 const moreBtn = $('#moreBtn'), topActions = $('.topbar-actions');
 moreBtn.addEventListener('click', () => topActions.classList.toggle('open'));
 topActions.addEventListener('click', e => { if (e.target.closest('a, #aboutBtn')) topActions.classList.remove('open'); });
+
+/* ============================================================
+   THEME TOGGLE (white sun) — default dark, switch to light
+   ============================================================ */
+const themeBtn = $('#themeBtn');
+function applyTheme(light) {
+    document.body.classList.toggle('light', light);
+    themeBtn.innerHTML = light ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    themeBtn.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+    try { localStorage.setItem('amjad-theme', light ? 'light' : 'dark'); } catch (e) {}
+}
+applyTheme(document.body.classList.contains('light'));
+themeBtn.addEventListener('click', () => applyTheme(!document.body.classList.contains('light')));
 
 /* ============================================================
    KEYBOARD
@@ -548,7 +584,10 @@ function initThree(THREE) {
         bgCam.lookAt(0, 0, -10);
         bgRenderer.render(bgScene, bgCam);
 
-        fxRenderer.setScissorTest(false); fxRenderer.clear();
+        const light = document.body.classList.contains('light');
+        fxRenderer.setScissorTest(false);
+        fxRenderer.setClearColor(0x000000, 0);
+        fxRenderer.clear();
         if (!modalOpen()) {
             const r = visRect(protoStage);
             if (r) {
@@ -566,13 +605,16 @@ function initThree(THREE) {
                 const y = innerHeight - r.bottom;
                 fxRenderer.setViewport(r.left, y, r.width, r.height);
                 fxRenderer.setScissor(r.left, y, r.width, r.height);
+                // light mode: paint a dark patch behind the neon prototype for contrast
+                fxRenderer.setClearColor(light ? 0x070d18 : 0x000000, light ? 1 : 0);
                 fxCam.aspect = r.width / r.height; fxCam.updateProjectionMatrix();
                 fxRenderer.render(stageScene, fxCam);
                 fxRenderer.setScissorTest(false);
+                fxRenderer.setClearColor(0x000000, 0);
             }
         }
-        // panel viewer
-        if (panelOpenId && pGroup) {
+        // panel viewer (only when the cover is showing the 3D prototype, not media)
+        if (panelOpenId && panelHas3D && pGroup) {
             animateGroup(pGroup, dt, now);
             pGroup.rotation.y += dt * 0.6; pGroup.position.y = Math.sin(now * 0.0012 + pPhase) * 0.06;
             pRenderer.render(pScene, pCam);
