@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Amjad Al Shukairi — Data Strategy & Solutions Lead</title>
     <meta name="description" content="Amjad Al Shukairi — Data Strategy & Solutions Lead. 7+ years across Telecom, Technology and Oil & Gas. Architect of Oman's national data portals: eCensus, NCSI Open Data, SME and Agriculture platforms.">
     <meta name="theme-color" content="#04060d">
@@ -42,233 +42,92 @@
         </div>
     </div>
 
-    <!-- 3D background (starfield + grid) -->
+    <!-- Background + prototype + pointer FX canvases -->
     <canvas id="bg3d" aria-hidden="true"></canvas>
-    <!-- 3D prototypes overlay (hero core + card skeletons) -->
     <canvas id="fx3d" aria-hidden="true"></canvas>
+    <canvas id="fxcursor" aria-hidden="true"></canvas>
+    <div id="spotlight" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-inner">
-            <a class="logo" href="#home">AMJAD<span class="logo-cursor">_</span><span class="logo-tag">AS</span></a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link active">HOME</a></li>
-                <li><a href="#about" class="nav-link">PROFILE</a></li>
-                <li><a href="#showcase" class="nav-link">SHOWCASE</a></li>
-                <li><a href="#stack" class="nav-link">SKILL TREE</a></li>
-                <li><a href="#contact" class="nav-link">CONTACT</a></li>
-            </ul>
-            <div class="nav-actions">
-                <span class="status-chip"><i class="dot"></i>OPEN FOR PROJECTS</span>
-                <a href="CV-8.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-download"></i> CV</a>
+    <!-- ============ FIXED APP SHELL ============ -->
+    <div class="app">
+
+        <!-- Top bar -->
+        <header class="topbar">
+            <div class="brand">
+                <img class="brand-photo" src="assets/profile.jpg" alt="Amjad Al Shukairi" width="46" height="46">
+                <span class="brand-online"></span>
+                <div class="brand-meta">
+                    <b>AMJAD AL SHUKAIRI</b>
+                    <span>DATA STRATEGY &amp; SOLUTIONS LEAD</span>
+                </div>
             </div>
-            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
+            <div class="topbar-actions">
+                <span class="status-chip"><i class="dot"></i>OPEN FOR PROJECTS</span>
+                <a href="https://github.com/amjadshuk" target="_blank" rel="noopener" class="icon-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:amjad.alshukiri@gmail.com" class="icon-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <button class="btn btn-ghost btn-sm" id="aboutBtn">ABOUT</button>
+                <a href="CV-8.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><i class="fas fa-download"></i> CV</a>
+                <button class="more-btn" id="moreBtn" aria-label="Menu"><i class="fas fa-ellipsis-vertical"></i></button>
+            </div>
+        </header>
 
-    <!-- Mobile menu overlay -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-        <nav class="mobile-links">
-            <a href="#home">HOME</a>
-            <a href="#about">PROFILE</a>
-            <a href="#showcase">SHOWCASE</a>
-            <a href="#stack">SKILL TREE</a>
-            <a href="#contact">CONTACT</a>
-            <a href="CV-8.pdf" target="_blank" rel="noopener" class="mm-cv"><i class="fas fa-download"></i> DOWNLOAD CV</a>
-        </nav>
-        <div class="mobile-socials">
-            <a href="https://github.com/amjadshuk" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="mailto:amjad.alshukiri@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-        </div>
+        <!-- Stage = the auto-player -->
+        <main class="stage">
+
+            <!-- Counter, hovering corner -->
+            <div class="counter" id="counter" title="Now showing">
+                <svg class="counter-ring" viewBox="0 0 44 44" aria-hidden="true">
+                    <circle class="ring-bg" cx="22" cy="22" r="19"></circle>
+                    <circle class="ring-fg" id="ringFg" cx="22" cy="22" r="19"></circle>
+                </svg>
+                <div class="counter-num"><b id="counterIdx">01</b><span id="counterTot">/18</span></div>
+                <span class="counter-cat" id="counterCat">EXPERIENCE</span>
+            </div>
+
+            <div class="stage-grid">
+                <!-- Sliding info -->
+                <div class="stage-info">
+                    <div class="slide" id="slide">
+                        <span class="cat-label" id="catLabel"><i class="cat-glyph">◆</i> EXPERIENCE</span>
+                        <p class="item-period" id="itemPeriod"></p>
+                        <h1 class="item-title" id="itemTitle"></h1>
+                        <p class="item-org" id="itemOrg"></p>
+                        <p class="item-short" id="itemShort"></p>
+                        <div class="tags" id="itemTags"></div>
+                        <div class="slide-cta">
+                            <button class="btn btn-primary" id="exploreBtn"><i class="fas fa-angles-right"></i> EXPLORE</button>
+                            <a class="btn btn-ghost slide-link" id="slideLink" target="_blank" rel="noopener" hidden></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stationary morphing prototype -->
+                <div class="stage-proto" id="protoStage">
+                    <span class="proto-glyph" id="protoGlyph">◆</span>
+                    <span class="proto-tag" id="protoTag">PROTOTYPE //</span>
+                    <span class="proto-hint">HOVER / MOVE TO INTERACT</span>
+                </div>
+            </div>
+
+            <!-- Player dock -->
+            <div class="dock">
+                <div class="dock-controls">
+                    <button class="dock-btn" id="prevBtn" aria-label="Previous"><i class="fas fa-backward-step"></i></button>
+                    <button class="dock-btn play" id="playBtn" aria-label="Pause"><i class="fas fa-pause"></i></button>
+                    <button class="dock-btn" id="nextBtn" aria-label="Next"><i class="fas fa-forward-step"></i></button>
+                </div>
+                <div class="dock-seq" id="dockSeq" role="tablist" aria-label="Jump to category">
+                    <button class="seq-tab active" data-cat="experience" style="--tc:#00e5ff">◆ EXPERIENCE</button>
+                    <button class="seq-tab" data-cat="projects" style="--tc:#ff2bd6">▲ PROJECT</button>
+                    <button class="seq-tab" data-cat="services" style="--tc:#ffb300">● SERVICE</button>
+                </div>
+                <div class="dock-timeline" id="dockTimeline" aria-hidden="true"></div>
+            </div>
+        </main>
     </div>
 
-    <main>
-        <!-- ============ HERO ============ -->
-        <section id="home" class="hero">
-            <div class="container hero-grid">
-                <div class="hero-text">
-                    <p class="hero-eyebrow">// DATA STRATEGY &amp; SOLUTIONS LEAD</p>
-                    <h1 class="hero-title glitch" data-text="AMJAD AL SHUKAIRI">AMJAD AL SHUKAIRI</h1>
-                    <p class="hero-typed">&gt; <span id="typed"></span><span class="caret">▌</span></p>
-                    <p class="hero-desc">
-                        7+ years turning data into national-scale products across
-                        <b>Telecom</b>, <b>Technology</b> and <b>Oil &amp; Gas</b> —
-                        from Oman's eCensus to live telco segments.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#showcase" class="btn btn-primary"><i class="fas fa-play"></i> EXPLORE SHOWCASE</a>
-                        <a href="CV-8.pdf" target="_blank" rel="noopener" class="btn btn-ghost"><i class="fas fa-file-arrow-down"></i> DOWNLOAD CV</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat"><span class="stat-n" data-count="7" data-suffix="+">0</span><span class="stat-l">YEARS XP</span></div>
-                        <div class="stat"><span class="stat-n" data-count="4" data-suffix="">0</span><span class="stat-l">NATIONAL PORTALS</span></div>
-                        <div class="stat"><span class="stat-n" data-count="3" data-suffix="">0</span><span class="stat-l">INDUSTRIES</span></div>
-                        <div class="stat"><span class="stat-n" data-count="20" data-suffix="+">0</span><span class="stat-l">TEAM LED</span></div>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="holo hero-holo" id="heroHolo" data-shape="core" data-color="#00e5ff">
-                        <span class="holo-glyph">◈</span>
-                        <span class="holo-caption">LIVE RENDER // SKELETON_CORE v3</span>
-                    </div>
-                    <div class="id-chip">
-                        <img src="assets/profile.jpg" alt="Amjad Al Shukairi" loading="lazy">
-                        <div class="id-meta">
-                            <b>AMJAD AL SHUKAIRI</b>
-                            <span>LVL 7+ · MUSCAT, OM</span>
-                        </div>
-                        <span class="id-online"></span>
-                    </div>
-                </div>
-            </div>
-            <a class="scroll-hint" href="#about" aria-label="Scroll down">
-                <span>SCROLL</span><i class="fas fa-chevron-down"></i>
-            </a>
-        </section>
-
-        <!-- Marquee divider -->
-        <div class="marquee" aria-hidden="true">
-            <div class="marquee-track">
-                <span>DATA STRATEGY ✦ SOLUTION ARCHITECTURE ✦ PRODUCT LEADERSHIP ✦ ANALYTICS ENGINEERING ✦ DATA GOVERNANCE ✦ BI &amp; DASHBOARDS ✦ CLOUD &amp; INFRASTRUCTURE ✦ HSE INTELLIGENCE ✦&nbsp;</span>
-                <span>DATA STRATEGY ✦ SOLUTION ARCHITECTURE ✦ PRODUCT LEADERSHIP ✦ ANALYTICS ENGINEERING ✦ DATA GOVERNANCE ✦ BI &amp; DASHBOARDS ✦ CLOUD &amp; INFRASTRUCTURE ✦ HSE INTELLIGENCE ✦&nbsp;</span>
-            </div>
-        </div>
-
-        <!-- ============ ABOUT ============ -->
-        <section id="about" class="about">
-            <div class="container">
-                <header class="sec-head reveal">
-                    <span class="sec-tag">// 01 · PLAYER PROFILE</span>
-                    <h2 class="glitch" data-text="WHO IS AMJAD?">WHO IS AMJAD?</h2>
-                </header>
-                <div class="about-grid">
-                    <div class="pp-frame reveal">
-                        <img src="assets/profile.jpg" alt="Amjad Al Shukairi — portrait" loading="lazy">
-                        <div class="pp-scan"></div>
-                        <span class="pp-label">ID: AMJAD_AS // VERIFIED ✓</span>
-                    </div>
-                    <div class="about-text reveal">
-                        <p class="lead">
-                            Results-oriented leader with 7+ years across <b>Telecom, Technology and Oil &amp; Gas</b> —
-                            expert at bridging technical data engineering with high-level business strategy.
-                        </p>
-                        <p>
-                            I build solutions from scratch and turn complex data into high-impact products:
-                            national census platforms, open-data infrastructures, telco product strategies and
-                            field-grade safety systems. Proven track record of designing scalable architectures,
-                            mentoring analytics teams and managing core business assets.
-                        </p>
-                        <div class="about-chips">
-                            <span class="chip"><i class="fas fa-location-dot"></i> Muscat, Oman</span>
-                            <span class="chip"><i class="fas fa-graduation-cap"></i> ACG Norton College (NZ) — Foundation</span>
-                            <span class="chip"><i class="fas fa-briefcase"></i> Open for freelance &amp; consulting</span>
-                        </div>
-                        <div class="about-traits">
-                            <div class="trait"><i class="fas fa-chart-line"></i><div><b>DATA-DRIVEN</b><span>Insight → strategy → shipped product</span></div></div>
-                            <div class="trait"><i class="fas fa-users"></i><div><b>TEAM LEADER</b><span>Mentors teams that outperform their size</span></div></div>
-                            <div class="trait"><i class="fas fa-bolt"></i><div><b>BUILDER</b><span>From zero to national scale, repeatedly</span></div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ SHOWCASE ============ -->
-        <section id="showcase" class="showcase">
-            <div class="container">
-                <header class="sec-head reveal">
-                    <span class="sec-tag">// 02 · SELECT CATEGORY</span>
-                    <h2 class="glitch" data-text="THE SHOWCASE">THE SHOWCASE</h2>
-                    <p class="sec-sub">Switch tags. Scroll right. Hover to power up. Hit <b>EXPLORE</b> for the full intel feed.</p>
-                </header>
-
-                <div class="tabs reveal" id="tabs" role="tablist" aria-label="Showcase categories"></div>
-
-                <div class="rail-zone">
-                    <button class="rail-btn prev" id="railPrev" aria-label="Scroll left"><i class="fas fa-chevron-left"></i></button>
-                    <div class="rails" id="rails"></div>
-                    <button class="rail-btn next" id="railNext" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <div class="rail-progress"><span id="railProgress"></span></div>
-                <p class="rail-hint"><i class="fas fa-arrows-left-right"></i> DRAG / SCROLL SIDEWAYS — <span id="railCount"></span></p>
-            </div>
-        </section>
-
-        <!-- ============ SKILL TREE ============ -->
-        <section id="stack" class="stacksec">
-            <div class="container">
-                <header class="sec-head reveal">
-                    <span class="sec-tag">// 03 · SKILL TREE</span>
-                    <h2 class="glitch" data-text="LOADOUT">LOADOUT</h2>
-                </header>
-                <div class="stack-grid">
-                    <div class="meters reveal">
-                        <div class="meter" data-v="95"><div class="meter-top"><span>PRODUCT &amp; STRATEGY</span><b>95</b></div><div class="meter-bar"><i></i></div></div>
-                        <div class="meter" data-v="92"><div class="meter-top"><span>DATA ENGINEERING &amp; BI</span><b>92</b></div><div class="meter-bar"><i></i></div></div>
-                        <div class="meter" data-v="90"><div class="meter-top"><span>SOLUTION ARCHITECTURE</span><b>90</b></div><div class="meter-bar"><i></i></div></div>
-                        <div class="meter" data-v="93"><div class="meter-top"><span>TEAM LEADERSHIP</span><b>93</b></div><div class="meter-bar"><i></i></div></div>
-                        <div class="meter" data-v="86"><div class="meter-top"><span>FULL-STACK DEV</span><b>86</b></div><div class="meter-bar"><i></i></div></div>
-                        <div class="meter" data-v="88"><div class="meter-top"><span>CLOUD &amp; INFRASTRUCTURE</span><b>88</b></div><div class="meter-bar"><i></i></div></div>
-                    </div>
-                    <div class="loadout reveal">
-                        <div class="load-group">
-                            <h4>// LEADERSHIP &amp; STRATEGY</h4>
-                            <div class="chips"><span>Product Strategy</span><span>Team Mentorship</span><span>Solution Architecture</span><span>Data Governance</span><span>Project Management</span></div>
-                        </div>
-                        <div class="load-group">
-                            <h4>// DATA &amp; BI</h4>
-                            <div class="chips"><span>Power BI</span><span>Tableau</span><span>SQL</span><span>DAX</span><span>MDX</span><span>ETL / ELT</span><span>DWH (OLAP/OLTP)</span></div>
-                        </div>
-                        <div class="load-group">
-                            <h4>// DEVELOPMENT</h4>
-                            <div class="chips"><span>Python</span><span>JavaScript / TypeScript</span><span>Java</span><span>Rust</span><span>Kotlin</span><span>Flutter</span></div>
-                        </div>
-                        <div class="load-group">
-                            <h4>// CLOUD &amp; INFRA</h4>
-                            <div class="chips"><span>Docker</span><span>Kubernetes</span><span>Apache Kafka</span><span>Airflow</span><span>Azure Databricks</span><span>Oracle BI</span><span>Nginx</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============ CONTACT ============ -->
-        <section id="contact" class="contact">
-            <div class="container">
-                <header class="sec-head reveal">
-                    <span class="sec-tag">// 04 · COMMS</span>
-                    <h2 class="glitch" data-text="OPEN A CHANNEL">OPEN A CHANNEL</h2>
-                    <p class="sec-sub">Ready to collaborate? Pick a frequency.</p>
-                </header>
-                <div class="contact-grid reveal">
-                    <a class="contact-card" href="mailto:amjad.alshukiri@gmail.com">
-                        <i class="fas fa-envelope"></i><b>EMAIL</b><span>amjad.alshukiri@gmail.com</span>
-                    </a>
-                    <a class="contact-card" href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener">
-                        <i class="fab fa-linkedin-in"></i><b>LINKEDIN</b><span>amjad-al-shukairi</span>
-                    </a>
-                    <a class="contact-card" href="https://github.com/amjadshuk" target="_blank" rel="noopener">
-                        <i class="fab fa-github"></i><b>GITHUB</b><span>@amjadshuk</span>
-                    </a>
-                    <a class="contact-card" href="https://wa.me/96899784498" target="_blank" rel="noopener">
-                        <i class="fab fa-whatsapp"></i><b>WHATSAPP</b><span>+968 9978 4498</span>
-                    </a>
-                </div>
-                <div class="cv-cta reveal">
-                    <div>
-                        <h3>FULL MISSION FILE</h3>
-                        <p>Complete CV — experience, certificates &amp; the whole arsenal.</p>
-                    </div>
-                    <a href="CV-8.pdf" target="_blank" rel="noopener" class="btn btn-primary btn-lg"><i class="fas fa-file-arrow-down"></i> DOWNLOAD CV</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ============ DETAIL PANEL (slide-over) ============ -->
+    <!-- ============ EXPLORE detail panel ============ -->
     <div class="scrim" id="scrim"></div>
     <aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panelTitle">
         <div class="ticker" aria-hidden="true">
@@ -318,22 +177,49 @@
         </footer>
     </aside>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <p>© 2026 AMJAD AL SHUKAIRI — ALL SYSTEMS OPERATIONAL</p>
-            <p class="footer-built">BUILT WITH <span>THREE.JS</span> · DARK MODE ONLY</p>
-            <div class="footer-links">
-                <a href="https://github.com/amjadshuk" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="mailto:amjad.alshukiri@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    <!-- ============ ABOUT / CONTACT sheet ============ -->
+    <div class="scrim" id="aboutScrim"></div>
+    <aside class="sheet" id="aboutSheet" role="dialog" aria-modal="true" aria-labelledby="aboutName">
+        <button class="sheet-close" id="aboutClose" aria-label="Close"><i class="fas fa-xmark"></i></button>
+        <div class="sheet-head">
+            <img class="sheet-photo" src="assets/profile.jpg" alt="Amjad Al Shukairi">
+            <div>
+                <span class="sheet-tag">// PLAYER PROFILE</span>
+                <h3 id="aboutName">AMJAD AL SHUKAIRI</h3>
+                <p class="sheet-role">Data Strategy &amp; Solutions Lead · Muscat, Oman</p>
             </div>
         </div>
-    </footer>
+        <p class="sheet-bio">
+            7+ years across <b>Telecom</b>, <b>Technology</b> and <b>Oil &amp; Gas</b>. I build solutions
+            from scratch, lead teams, and turn data into products that make an impact — from Oman's
+            national data portals to live telco segments.
+        </p>
+        <div class="sheet-stats">
+            <div><b>7+</b><span>YEARS</span></div>
+            <div><b>4</b><span>NATIONAL PORTALS</span></div>
+            <div><b>3</b><span>INDUSTRIES</span></div>
+            <div><b>20+</b><span>TEAM LED</span></div>
+        </div>
+        <div class="sheet-skills">
+            <h5>// LOADOUT</h5>
+            <div class="chips">
+                <span>Product Strategy</span><span>Solution Architecture</span><span>Data Governance</span>
+                <span>Power BI</span><span>SQL</span><span>Python</span><span>TypeScript</span><span>Rust</span>
+                <span>Kotlin</span><span>Docker</span><span>Kubernetes</span><span>Databricks</span>
+                <span>Kafka</span><span>Airflow</span><span>Team Leadership</span>
+            </div>
+        </div>
+        <div class="sheet-contact">
+            <a href="mailto:amjad.alshukiri@gmail.com"><i class="fas fa-envelope"></i> amjad.alshukiri@gmail.com</a>
+            <a href="https://www.linkedin.com/in/amjad-al-shukairi-59b53072/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="https://github.com/amjadshuk" target="_blank" rel="noopener"><i class="fab fa-github"></i> @amjadshuk</a>
+            <a href="CV-8.pdf" target="_blank" rel="noopener" class="sheet-cv"><i class="fas fa-file-arrow-down"></i> Download CV</a>
+        </div>
+    </aside>
 
     <noscript>
-        <style>#loader{display:none}</style>
-        <p style="text-align:center;padding:1rem;color:#8aa3b8">This site is best experienced with JavaScript enabled — the 3D showcase needs it.</p>
+        <style>#loader{display:none}.app{position:static}</style>
+        <p style="text-align:center;padding:1rem;color:#8aa3b8;font-family:sans-serif">This portfolio is an interactive player — please enable JavaScript to view it.</p>
     </noscript>
 
     <script src="data.js"></script>
