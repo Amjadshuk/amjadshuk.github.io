@@ -40,6 +40,34 @@ a:hover{color:inherit}
 ::selection{background:rgba(15,118,110,.25)}
 .mini{scrollbar-width:none}
 .mini::-webkit-scrollbar{display:none}
+*{-webkit-tap-highlight-color:transparent}
+/* ---------- mobile pass (desktop-first design; collapse under 900px) ---------- */
+@media screen and (max-width:900px){
+  #topbar{padding:0 14px !important}
+  .hide-m{display:none !important}
+  #rail{left:50% !important;top:auto !important;bottom:10px !important;transform:translateX(-50%);flex-direction:row !important;gap:16px !important}
+  #rail > div > span:nth-child(2){display:none}
+  #scroll > section{padding:0 22px !important}
+  .skills-head{padding:11vh 18px 0 22px !important}
+  #hero3d{right:50% !important;top:58% !important;transform:translate(50%,-50%) !important;opacity:.42}
+  #root[data-theme="dark"] #hero3d{opacity:.26}
+  #scroll h1{font-size:clamp(40px,11.5vw,64px) !important}
+  #hint{bottom:44px !important}
+  #cv-grab-hint{display:none !important}
+  .proj-row{flex-wrap:wrap}
+  .proj-meta{flex-basis:100%;order:5;margin-left:25px !important;font-size:11px !important}
+  .proj-arrow{margin-left:auto}
+  .cv-page{width:calc(100vw - 20px) !important;min-height:0 !important;padding:28px 20px !important}
+  .cv-head{flex-direction:column !important;gap:12px}
+  .cv-head > div:last-child{text-align:left !important}
+  .cv-name{font-size:26px !important}
+  .cv-grid2{grid-template-columns:1fr !important}
+  .cv-skgrid{grid-template-columns:92px 1fr !important}
+}
+@media screen and (max-width:480px){
+  .brand-name{font-size:10.5px !important;letter-spacing:.06em !important;max-width:38vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #cv-chip{padding:6px 10px !important}
+}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(15,118,110,.3)}50%{box-shadow:0 0 0 8px rgba(15,118,110,0)}}
 @media print{
@@ -56,21 +84,21 @@ a:hover{color:inherit}
 <div id="root" style="--bg:#F6F4EE;--panel:#FFFFFF;--ink:#211E16;--mut:#6F6857;--acc:#0F766E;--acc2:#C2552F;--line:rgba(33,30,22,.16);position:fixed;inset:0;background:var(--bg);color:var(--ink);font-family:'Archivo',sans-serif;overflow:hidden;transition:background .45s,color .45s">
 
   <!-- ================= TOPBAR ================= -->
-  <div style="position:absolute;top:0;left:0;right:0;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px);z-index:20;box-sizing:border-box">
+  <div id="topbar" style="position:absolute;top:0;left:0;right:0;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px);z-index:20;box-sizing:border-box">
     <div style="display:flex;align-items:center;gap:12px">
       <img src="assets/profile.jpg" alt="Amjad Al Shukairi" style="width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid var(--line)">
-      <span style="font:600 12px 'Space Grotesk',sans-serif;letter-spacing:.12em">AMJAD AL SHUKAIRI</span>
-      <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--mut);border-left:1px solid var(--line);padding-left:12px">TECH SOLUTIONS CONSULTANT</span>
+      <span class="brand-name" style="font:600 12px 'Space Grotesk',sans-serif;letter-spacing:.12em">AMJAD AL SHUKAIRI</span>
+      <span class="hide-m" style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;color:var(--mut);border-left:1px solid var(--line);padding-left:12px">TECH SOLUTIONS CONSULTANT</span>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
-      <span style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:var(--mut)">MUSCAT · GMT+4</span>
+      <span class="hide-m" style="font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;color:var(--mut)">MUSCAT · GMT+4</span>
       <button id="cv-chip" style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;padding:7px 14px;border:1px solid var(--acc);border-radius:999px;background:transparent;color:var(--acc);cursor:pointer;transition:.25s" style-hover="background:var(--acc);color:#fff">INTERACTIVE CV</button>
       <button id="theme-btn" title="Light / dark" style="width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;font-size:14px;line-height:1" style-hover="background:var(--panel)">☾</button>
     </div>
   </div>
 
   <!-- ================= GUIDE RAIL ================= -->
-  <div style="position:absolute;left:28px;top:58px;bottom:0;display:flex;flex-direction:column;justify-content:center;gap:28px;z-index:15">
+  <div id="rail" style="position:absolute;left:28px;top:58px;bottom:0;display:flex;flex-direction:column;justify-content:center;gap:28px;z-index:15">
     <div id="dot-0" style="display:flex;align-items:center;gap:10px;cursor:pointer">
       <span style="width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 5px color-mix(in srgb,var(--acc) 18%,transparent);transition:.3s"></span>
       <span style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.16em;color:var(--ink);transition:.3s">01 PROFILE</span>
@@ -120,28 +148,28 @@ a:hover{color:inherit}
         <span style="font:600 9.5px 'IBM Plex Mono',monospace;letter-spacing:.14em;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--acc2) 14%,transparent);color:var(--acc2)">★ NATIONAL PROJECTS — GOVERNMENT OF OMAN</span>
       </div>
       <div style="display:flex;flex-direction:column">
-        <a href="https://www.ecensus.gov.om/" target="_blank" rel="noopener" style="display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--line);transition:.25s" style-hover="color:var(--acc);padding-left:8px">
+        <a href="https://www.ecensus.gov.om/" target="_blank" rel="noopener" class="proj-row" style="display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--line);transition:.25s" style-hover="color:var(--acc);padding-left:8px">
           <span style="font:500 11px 'IBM Plex Mono',monospace;color:var(--acc2)">01</span>
           <span style="font:600 clamp(18px,1.6vw,24px) 'Space Grotesk',sans-serif">Oman eCensus</span>
-          <span style="font:400 11.5px 'Archivo',sans-serif;color:var(--mut);margin-left:auto">national census · 5.2M population</span>
-          <span style="font:400 14px 'Archivo',sans-serif;color:var(--acc)">↗</span>
+          <span class="proj-meta" style="font:400 11.5px 'Archivo',sans-serif;color:var(--mut);margin-left:auto">national census · 5.2M population</span>
+          <span class="proj-arrow" style="font:400 14px 'Archivo',sans-serif;color:var(--acc)">↗</span>
         </a>
-        <a href="https://info.sme.gov.om/web/" target="_blank" rel="noopener" style="display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--line);transition:.25s" style-hover="color:var(--acc);padding-left:8px">
+        <a href="https://info.sme.gov.om/web/" target="_blank" rel="noopener" class="proj-row" style="display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--line);transition:.25s" style-hover="color:var(--acc);padding-left:8px">
           <span style="font:500 11px 'IBM Plex Mono',monospace;color:var(--acc2)">02</span>
           <span style="font:600 clamp(18px,1.6vw,24px) 'Space Grotesk',sans-serif">SME Open Data</span>
-          <span style="font:400 11.5px 'Archivo',sans-serif;color:var(--mut);margin-left:auto">SME economy analytics</span>
-          <span style="font:400 14px 'Archivo',sans-serif;color:var(--acc)">↗</span>
+          <span class="proj-meta" style="font:400 11.5px 'Archivo',sans-serif;color:var(--mut);margin-left:auto">SME economy analytics</span>
+          <span class="proj-arrow" style="font:400 14px 'Archivo',sans-serif;color:var(--acc)">↗</span>
         </a>
-        <a href="https://agriculture.ecensus.gov.om/" target="_blank" rel="noopener" style="display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--line);transition:.25s" style-hover="color:var(--acc);padding-left:8px">
+        <a href="https://agriculture.ecensus.gov.om/" target="_blank" rel="noopener" class="proj-row" style="display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--line);transition:.25s" style-hover="color:var(--acc);padding-left:8px">
           <span style="font:500 11px 'IBM Plex Mono',monospace;color:var(--acc2)">03</span>
           <span style="font:600 clamp(18px,1.6vw,24px) 'Space Grotesk',sans-serif">Agriculture &amp; Water Census</span>
-          <span style="font:400 11.5px 'Archivo',sans-serif;color:var(--mut);margin-left:auto">unified indicators portal</span>
-          <span style="font:400 14px 'Archivo',sans-serif;color:var(--acc)">↗</span>
+          <span class="proj-meta" style="font:400 11.5px 'Archivo',sans-serif;color:var(--mut);margin-left:auto">unified indicators portal</span>
+          <span class="proj-arrow" style="font:400 14px 'Archivo',sans-serif;color:var(--acc)">↗</span>
         </a>
-        <div style="display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+        <div class="proj-row" style="display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
           <span style="font:500 11px 'IBM Plex Mono',monospace;color:var(--acc2)">04</span>
           <span style="font:600 clamp(18px,1.6vw,24px) 'Space Grotesk',sans-serif">NCSI Open Data Portal</span>
-          <span style="font:400 11.5px 'Archivo',sans-serif;color:var(--mut);margin-left:auto">official national statistics</span>
+          <span class="proj-meta" style="font:400 11.5px 'Archivo',sans-serif;color:var(--mut);margin-left:auto">official national statistics</span>
         </div>
       </div>
       <p style="font:400 12.5px/1.7 'Archivo',sans-serif;color:var(--mut);margin:18px 0 0;max-width:420px;text-wrap:pretty">All of them run on one <b style="color:var(--ink)">unified BI infrastructure</b> I designed — delivered by a team of engineers I led at Rihal.</p>
@@ -184,7 +212,7 @@ a:hover{color:inherit}
     <!-- 04 SKILLS -->
     <section id="skills-sec" style="height:100%;scroll-snap-align:start;position:relative;box-sizing:border-box">
       <div id="bubble-field" style="position:absolute;inset:0;z-index:1;overflow:hidden"></div>
-      <div style="position:relative;z-index:2;padding:9vh 0 0 170px;pointer-events:none">
+      <div class="skills-head" style="position:relative;z-index:2;padding:9vh 0 0 170px;pointer-events:none">
         <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.24em;color:var(--acc);margin-bottom:14px">SKILLS — TAP · DRAG · TOSS</div>
         <div id="skill-legend" style="display:flex;gap:8px;flex-wrap:wrap;pointer-events:auto">
           <button data-dom="lead" style="font:600 10px 'IBM Plex Mono',monospace;letter-spacing:.1em;padding:6px 12px;border-radius:999px;border:1px solid var(--acc);background:var(--acc);color:#fff;cursor:pointer;transition:.25s">LEADERSHIP</button>
@@ -231,9 +259,9 @@ a:hover{color:inherit}
     </div>
 
     <div class="cv-page" id="cv-page-1" style="width:780px;min-height:1060px;margin:10px auto 34px;background:#FFFFFF;color:#211E16;box-shadow:0 24px 70px rgba(0,0,0,.35);padding:58px 62px;box-sizing:border-box;border-radius:3px">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0F766E;padding-bottom:22px">
+      <div class="cv-head" style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0F766E;padding-bottom:22px">
         <div>
-          <div style="font:600 34px/1.05 'Space Grotesk',sans-serif;letter-spacing:-.02em">Amjad Al Shukairi</div>
+          <div class="cv-name" style="font:600 34px/1.05 'Space Grotesk',sans-serif;letter-spacing:-.02em">Amjad Al Shukairi</div>
           <div style="font:600 12px 'IBM Plex Mono',monospace;letter-spacing:.18em;color:#0F766E;margin-top:8px">TECH SOLUTIONS CONSULTANT</div>
         </div>
         <div style="text-align:right;font:400 10.5px/1.7 'IBM Plex Mono',monospace;color:#6F6857">
@@ -310,7 +338,7 @@ a:hover{color:inherit}
       </div>
 
       <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#0F766E;margin:28px 0 4px;border-bottom:1px solid rgba(33,30,22,.14);padding-bottom:8px">NATIONAL PROJECTS</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin-top:14px">
+      <div class="cv-grid2" style="display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin-top:14px">
         <div style="font:400 11.5px/1.6 'Archivo',sans-serif;color:#3E3A2F"><b style="font-family:'Space Grotesk',sans-serif">Oman eCensus</b> — census data flow &amp; visualization, 5.2M population · ecensus.gov.om</div>
         <div style="font:400 11.5px/1.6 'Archivo',sans-serif;color:#3E3A2F"><b style="font-family:'Space Grotesk',sans-serif">SME Open Data</b> — public analytics for the SME economy · info.sme.gov.om</div>
         <div style="font:400 11.5px/1.6 'Archivo',sans-serif;color:#3E3A2F"><b style="font-family:'Space Grotesk',sans-serif">Agriculture &amp; Water Census</b> — unified indicators portal · agriculture.ecensus.gov.om</div>
@@ -318,7 +346,7 @@ a:hover{color:inherit}
       </div>
 
       <div style="font:600 11px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#0F766E;margin:28px 0 4px;border-bottom:1px solid rgba(33,30,22,.14);padding-bottom:8px">SKILLS</div>
-      <div style="display:grid;grid-template-columns:150px 1fr;gap:10px 18px;margin-top:14px;font:400 11.5px/1.65 'Archivo',sans-serif;color:#3E3A2F">
+      <div class="cv-skgrid" style="display:grid;grid-template-columns:150px 1fr;gap:10px 18px;margin-top:14px;font:400 11.5px/1.65 'Archivo',sans-serif;color:#3E3A2F">
         <div style="font:600 10px 'IBM Plex Mono',monospace;color:#6F6857;letter-spacing:.1em;padding-top:2px">LEADERSHIP</div><div>Team leadership (20+), mentorship, operations management</div>
         <div style="font:600 10px 'IBM Plex Mono',monospace;color:#6F6857;letter-spacing:.1em;padding-top:2px">ARCHITECTURE</div><div>Solution architecture, tech consulting, data governance, DWH design</div>
         <div style="font:600 10px 'IBM Plex Mono',monospace;color:#6F6857;letter-spacing:.1em;padding-top:2px">DATA &amp; BI</div><div>Power BI, SQL, Python, ETL/ELT, Databricks, Kubernetes, Docker</div>
@@ -357,6 +385,7 @@ document.querySelectorAll('[style-hover]').forEach(el => {
 (async () => {
   const $ = id => document.getElementById(id);
   const RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MQM = matchMedia('(max-width: 900px)');
   const spin = () => SPIN_SPEED;
   const disposers = [];
   const on = (el, ev, fn, opt) => { if (!el) return; el.addEventListener(ev, fn, opt); disposers.push(() => el.removeEventListener(ev, fn, opt)); };
@@ -375,6 +404,7 @@ document.querySelectorAll('[style-hover]').forEach(el => {
   const applyTheme = () => {
     const pal = PAL[mode], root = $('root');
     if (!root) return;
+    root.dataset.theme = mode;
     Object.entries(pal.vars).forEach(([k, v]) => root.style.setProperty('--' + k, v));
     const btn = $('theme-btn');
     if (btn) btn.textContent = mode === 'light' ? '☾' : '☀';
@@ -509,15 +539,23 @@ document.querySelectorAll('[style-hover]').forEach(el => {
   let activeDom = 'lead';
   if (field) {
     const fw = () => field.clientWidth, fh = () => field.clientHeight;
+    const rScale = MQM.matches ? .58 : 1;
+    /* on mobile the header block sits over the field — keep bubbles below it */
+    const headEl = document.querySelector('.skills-head');
+    const topFloor = () => MQM.matches && headEl ? Math.max(40, headEl.offsetTop + headEl.offsetHeight + 8) : 40;
     SKILLS.forEach(s => {
-      const r = 26 + s.w * 0.52;
+      const r = Math.round((26 + s.w * 0.52) * rScale);
       const el = document.createElement('div');
       el.textContent = s.n;
-      el.style.cssText = 'position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:50%;cursor:grab;user-select:none;transition:opacity .4s,border-color .4s,color .4s,background .4s;will-change:transform;padding:8px;box-sizing:border-box;';
+      el.style.cssText = 'position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:50%;cursor:grab;user-select:none;touch-action:none;transition:opacity .4s,border-color .4s,color .4s,background .4s;will-change:transform;padding:8px;box-sizing:border-box;';
       el.style.width = el.style.height = (r * 2) + 'px';
       el.style.font = "500 " + Math.max(10, r * 0.24) + "px 'IBM Plex Mono',monospace";
       field.appendChild(el);
-      const b = { el, r, d: s.d, x: 200 + Math.random() * 600, y: 100 + Math.random() * 300, vx: (Math.random() - .5) * .6, vy: (Math.random() - .5) * .6, held: false };
+      const tf = topFloor();
+      const b = { el, r, d: s.d,
+        x: r + Math.random() * Math.max(1, fw() - r * 2),
+        y: r + tf + Math.random() * Math.max(1, fh() - r * 2 - tf),
+        vx: (Math.random() - .5) * .6, vy: (Math.random() - .5) * .6, held: false };
       bubbles.push(b);
     });
     const styleBubbles = () => {
@@ -568,7 +606,7 @@ document.querySelectorAll('[style-hover]').forEach(el => {
     });
     bubbleStep = () => {
       if (secIdx !== 3) return;
-      const W = fw(), H = fh();
+      const W = fw(), H = fh(), TF = topFloor();
       for (let i = 0; i < bubbles.length; i++) {
         const b = bubbles[i];
         if (!b.held) {
@@ -578,7 +616,7 @@ document.querySelectorAll('[style-hover]').forEach(el => {
         }
         if (b.x < b.r) { b.x = b.r; b.vx = Math.abs(b.vx) * .7; }
         if (b.x > W - b.r) { b.x = W - b.r; b.vx = -Math.abs(b.vx) * .7; }
-        if (b.y < b.r + 40) { b.y = b.r + 40; b.vy = Math.abs(b.vy) * .7; }
+        if (b.y < b.r + TF) { b.y = b.r + TF; b.vy = Math.abs(b.vy) * .7; }
         if (b.y > H - b.r) { b.y = H - b.r; b.vy = -Math.abs(b.vy) * .7; }
         for (let j = i + 1; j < bubbles.length; j++) {
           const o = bubbles[j], dx = o.x - b.x, dy = o.y - b.y;
@@ -601,7 +639,9 @@ document.querySelectorAll('[style-hover]').forEach(el => {
   let renderScene = null;
   if (THREE && $('hero3d')) {
     const canvas = $('hero3d');
-    const size = () => Math.min(Math.round(innerWidth * .42), Math.round(innerHeight * .78), 640);
+    const size = () => MQM.matches
+      ? Math.min(Math.round(innerWidth * .92), Math.round(innerHeight * .58), 480)
+      : Math.min(Math.round(innerWidth * .42), Math.round(innerHeight * .78), 640);
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     const scene = new THREE.Scene();
@@ -725,9 +765,10 @@ document.querySelectorAll('[style-hover]').forEach(el => {
       g3.children.forEach(ch => ch.material.color.set(pal.acc));
     });
 
-    /* click CV pages */
+    /* click CV pages — listen on the scroll layer (it sits above the canvas,
+       so events never reach the canvas itself); coords map via the canvas rect */
     const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
-    on(canvas, 'click', e => {
+    on(scroll, 'click', e => {
       if (secIdx !== 4) return;
       const r = canvas.getBoundingClientRect();
       mouse.x = ((e.clientX - r.left) / r.width) * 2 - 1;
@@ -735,13 +776,13 @@ document.querySelectorAll('[style-hover]').forEach(el => {
       ray.setFromCamera(mouse, camera);
       if (ray.intersectObjects(g4.children).length) openCV();
     });
-    on(canvas, 'pointermove', e => {
-      if (secIdx !== 4) { canvas.style.cursor = 'default'; return; }
+    on(scroll, 'pointermove', e => {
+      if (secIdx !== 4) { scroll.style.cursor = ''; return; }
       const r = canvas.getBoundingClientRect();
       mouse.x = ((e.clientX - r.left) / r.width) * 2 - 1;
       mouse.y = -((e.clientY - r.top) / r.height) * 2 + 1;
       ray.setFromCamera(mouse, camera);
-      canvas.style.cursor = ray.intersectObjects(g4.children).length ? 'pointer' : 'default';
+      scroll.style.cursor = ray.intersectObjects(g4.children).length ? 'pointer' : '';
     });
 
     let mx = 0, my = 0, sm = 0;
